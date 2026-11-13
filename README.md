@@ -19,17 +19,25 @@ left counts the words it has eaten. Screenshot from an August 2026 build.*
 
 ## What I contributed
 
-Seven pull requests, all merged upstream:
+**Made the worms more lifelike, and gave them more to read** ([#5](https://github.com/YitongTseo/HamletRNAWorld/pull/5), about 13,500 lines).
+Worms gained plasticity, hunger and habituation, so a worm's behaviour changes with what it
+has just eaten. Three new texts joined *Hamlet*: the *Tao Te Ching*, *Beowulf* and the
+Chinese 道德經, each with its own smell, grammar and judge. I also built the Vivarium viewer
+shown above, and a judge backend that runs on any OpenAI-compatible model, local ones
+included.
 
-| PR | What it did |
-|---|---|
-| [#1](https://github.com/YitongTseo/HamletRNAWorld/pull/1) | Fixed comments and docs that had drifted from the code |
-| [#5](https://github.com/YitongTseo/HamletRNAWorld/pull/5) | Lifelike mode (plasticity, hunger, habituation). The *Tao Te Ching*, *Beowulf* and 道德經 flasks, with smell, grammar and judging for each text. The Vivarium viewer. A judge backend for any OpenAI-compatible model. |
-| [#6](https://github.com/YitongTseo/HamletRNAWorld/pull/6) | Measured whether selection works, and found it did not (below). Added shared seeds per flask and a tunable judge sample. |
-| [#7](https://github.com/YitongTseo/HamletRNAWorld/pull/7) | `/debug/objects`, which counts live worlds to help find a slow memory leak |
-| [#8](https://github.com/YitongTseo/HamletRNAWorld/pull/8) | Merged two lines of development that had fixed the same bug two ways |
-| [#9](https://github.com/YitongTseo/HamletRNAWorld/pull/9) | Fixed a gene migration that would have stopped evolution on three of four processes |
-| [#10](https://github.com/YitongTseo/HamletRNAWorld/pull/10) | Cut the gardener's API cost with prompt caching and a run-every-Nth-epoch setting |
+**Found that evolution was not selecting anything** ([#6](https://github.com/YitongTseo/HamletRNAWorld/pull/6)).
+Kept genomes did no better than fresh mutants (the result below). The noise between runs was
+larger than any difference between genomes. Every worm in a flask now shares one random
+seed per generation, and each lineage keeps one judge, so a better genome can show.
+
+**Kept the long runs alive and affordable.** A gene migration would have silently stopped
+evolution on three of four processes ([#9](https://github.com/YitongTseo/HamletRNAWorld/pull/9)).
+The gardener, not the judge, turned out to be the costly API call, so it now uses prompt
+caching and can run every Nth epoch ([#10](https://github.com/YitongTseo/HamletRNAWorld/pull/10)).
+Smaller fixes: a probe to find a slow memory leak ([#7](https://github.com/YitongTseo/HamletRNAWorld/pull/7)),
+merging two branches that fixed one bug two ways ([#8](https://github.com/YitongTseo/HamletRNAWorld/pull/8)),
+and docs that had drifted from the code ([#1](https://github.com/YitongTseo/HamletRNAWorld/pull/1)).
 
 ## Has it learned anything?
 
